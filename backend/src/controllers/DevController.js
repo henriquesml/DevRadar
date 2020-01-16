@@ -8,7 +8,7 @@ module.exports = {
         return response.json(devs)
     },
     async store(request, response) {
-        const { github_username, techs, latidude, longitude  } = request.body
+        const { github_username, techs, latitude, longitude  } = request.body
 
         let dev = await DevSchema.findOne({ github_username })
 
@@ -21,7 +21,7 @@ module.exports = {
         
             const location = {
                 type: 'Point',
-                coordinates: [longitude, latidude]
+                coordinates: [longitude, latitude]
             }
         
             dev = await DevSchema.create({
